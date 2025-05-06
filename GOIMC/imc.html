@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<head>
+    <title>IMC</title>
+</head>           
+<body>
+    <h3>Cálculo do IMC</h3>
+    <form name="calculoIMC">
+      <label for="altura">Altura</label> 
+        <input type="text" id="altura" placeholder="Digite a Altura. Exemplo: 1.70"/><p><p>
+      <label for="peso">Peso</label> 
+        <input type="text" id="peso" placeholder="Digite o Peso. Exemplo: 100"/><p> 
+    </form>
+    <p>
+    <div id="resultado"></div>
+  <button onClick="calcular()">Calcular</button>
+  <button onClick="recalcular()">Recalcular</button>
+</body>
+<script>
+function calcular() {
+   
+      var altura = document.calculoIMC.altura.value;      
+      var peso = Number(document.calculoIMC.peso.value);      
+      var i = peso / (altura * altura);
+      imc = i.toFixed(2);
+      var resultado = 'Seu IMC é ' + imc;
+
+      resultado += '<p />';
+      
+      if (imc < 18.5) {
+          resultado += 'Atenção! Você está abaixo do peso Ideal';
+      } else if (imc < 25) {
+          resultado += 'Parabéns! Você está em seu peso Normal!';
+      } else if (imc < 30) {
+          resultado += 'Você está Acima de seu Peso (Sobrepeso)';
+      } else if (imc < 35) {
+          resultado += 'Você está com Obesidade Grau I';
+      } else if (imc < 40) {
+          resultado += 'Você está com Obesidade Grau II';
+      } else {
+          resultado += 'Você está com Obesidade Grau III';
+      }
+              
+      document.getElementById('resultado').innerHTML = resultado;
+  }
+
+function recalcular() {
+  location.reload();
+  document.getElementById('altura').value='';
+  document.getElementById('peso').value='';
+}
+</script>       
+</html>
